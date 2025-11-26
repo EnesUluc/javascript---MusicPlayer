@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
     <title>Music Player</title>
 </head>
 <body>
+
+    <div class="container">
+        <img id="music-image">
+        <audio src="audio" type="/audio"></audio>
+        <div id="music-details">
+            <p class="title"></p>
+            <p class="singer"></p>
+        </div>
+        <div id="controls">
+            <i id="prev" class="fa-solid fa-backward-step"></i>
+            <i id="play" class="fa-solid fa-play"></i>
+            <i id="next" class="fa-solid fa-forward-step"></i>
+
+        </div>
+    </div>
     
 
     <script src="music.js"></script>
