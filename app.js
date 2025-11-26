@@ -13,8 +13,11 @@ const audio = document.querySelector("audio");
 // Times
 const currentTime = document.querySelector("#current-time");
 const duration = document.querySelector("#duration");
-const progressBar = document.querySelector("#progress-bar");
 
+// Bars
+const progressBar = document.querySelector("#progress-bar");
+const volume = document.querySelector("#controls #volume");
+const volumeBar = document.querySelector("#controls #volume-bar");
 
 const player = new MusicPlayer(musicList);
 
@@ -67,8 +70,13 @@ function playMusic(){
 audio.addEventListener("loadedmetadata", ()=>{
     duration.innerText = calculateTime(audio.duration);
     progressBar.max = Math.floor(audio.duration);
+    volumeBar.value = "100";
 });
 
+// change the progress of the music
+progressBar.addEventListener("input", ()=> {
+    audio.currentTime = progressBar.value;
+});
 function calculateTime(duration){
     let seconds = Math.round(duration % 60);
     const currentSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
@@ -76,8 +84,45 @@ function calculateTime(duration){
     return `${minutes}:${currentSeconds}`;
 }
 
-
+// Listen the page
 audio.addEventListener("timeupdate", ()=> {
     progressBar.value = Math.floor(audio.currentTime);
     currentTime.innerText = calculateTime(progressBar.value);
+});
+
+// Volume
+volume.addEventListener("click", ()=>{
+    let isMuted = volume.classList.contains("muted");
+    isMuted ? unmutedAudio(): mutedAudio(); 
+});
+
+// mute
+function mutedAudio(){
+    volume.classList = "fa-solid fa-volume-xmark muted";
+    audio.muted = true;
+    volumeBar.value = 0;
+    audio.volume = 0;
+}
+// unmute
+function unmutedAudio(){
+    volume.classList = "fa-solid fa-volume-high";
+    audio.muted = false;
+    volumeBar.value = 100;
+    audio.volume = 1;
+}
+
+// Follow the volume bar
+volumeBar.addEventListener("input", ()=> {
+    console.log("slşdcmds");
+    console.log(volumeBar.volume);
+    if(volumeBar.value > 0){
+        console.log("higher");
+        volume.classList = "fa-solid fa-volume-high";
+        audio.muted = false;
+    }else if(volumeBar.value == 0){
+        console.log("lower");
+        volume.classList = "fa-solid fa-volume-xmark muted";
+        audio.muted = true;
+    }
+    audio.volume = volumeBar.value / 100;
 });
