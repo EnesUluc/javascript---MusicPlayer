@@ -10,6 +10,11 @@ const play = document.querySelector("#controls #play");
 const next = document.querySelector("#controls #next");
 const audio = document.querySelector("audio");
 
+// Times
+const currentTime = document.querySelector("#current-time");
+const duration = document.querySelector("#duration");
+const progressBar = document.querySelector("#progress-bar");
+
 
 const player = new MusicPlayer(musicList);
 
@@ -26,7 +31,6 @@ function displayMusic(music){
     singer.innerText = music.singer;
     img.src = "img/" + music.img;
     audio.src = "mp3/" + music.file;
-    console.log("AUDIO SRC:"+audio.src);
 }
 // Play the music
 play.addEventListener("click", () => {
@@ -58,6 +62,22 @@ function playMusic(){
     container.classList.add("playing");
     play.classList = "fa-solid fa-pause";
     audio.play();
-
 }
 
+audio.addEventListener("loadedmetadata", ()=>{
+    duration.innerText = calculateTime(audio.duration);
+    progressBar.max = Math.floor(audio.duration);
+});
+
+function calculateTime(duration){
+    let seconds = Math.round(duration % 60);
+    const currentSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    let minutes = Math.round(duration / 60);
+    return `${minutes}:${currentSeconds}`;
+}
+
+
+audio.addEventListener("timeupdate", ()=> {
+    progressBar.value = Math.floor(audio.currentTime);
+    currentTime.innerText = calculateTime(progressBar.value);
+});

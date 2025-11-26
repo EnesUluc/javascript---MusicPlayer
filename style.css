@@ -1,8 +1,28 @@
+.container{
+    width: 350px;
+}
 #controls i{
     font-size: 30px;
     color: purple;
     margin-right: 10px;
 }
+#controls i:hover{
+    cursor: pointer;
+
+}
 #music-image{
-    width: 180px;
+    width: 100%;
+    object-fit: cover;
+    
+}
+#progress{
+    margin-bottom: 20px;
+}
+#progress-bar{
+    width: 100%;
+}
+#progress .times{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
