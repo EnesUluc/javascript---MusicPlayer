@@ -6,7 +6,7 @@ class Music{
         this.file = file;
     }
     getName(){
-        return this.title + " - " + this.singer;
+        return this.title;
     }
 }
 
