@@ -22,3 +22,10 @@ body{
     align-items: center;
     gap: .3rem;
 }
+li:hover{
+    cursor: pointer;
+}
+li.playing{
+    background-color: #0b5eb7;
+    color: #fff;
+}
