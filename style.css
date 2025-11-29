@@ -1,28 +1,24 @@
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .container{
     width: 400px;
-}
-#controls i{
-    font-size: 30px;
-    color: purple;
-    margin-right: 10px;
 }
 #controls i:hover{
     cursor: pointer;
 
 }
-#music-image{
-    width: 100%;
-    object-fit: cover;
-    
-}
-#progress{
-    margin-bottom: 20px;
-}
-#progress-bar{
-    width: 100%;
-}
-#progress .times, #controls{
+#progress .times, .card-footer{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.card-footer .volume-container{
+    display: flex;
+    align-items: center;
+    gap: .3rem;
 }

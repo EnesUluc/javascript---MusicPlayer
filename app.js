@@ -16,8 +16,8 @@ const duration = document.querySelector("#duration");
 
 // Bars
 const progressBar = document.querySelector("#progress-bar");
-const volume = document.querySelector("#controls #volume");
-const volumeBar = document.querySelector("#controls #volume-bar");
+const volume = document.querySelector(".card-footer .volume-container #volume");
+const volumeBar = document.querySelector(".card-footer .volume-container #volume-bar");
 
 const player = new MusicPlayer(musicList);
 
@@ -57,13 +57,13 @@ prev.addEventListener("click", () => {
 // Pause the music
 function pauseMusic(){
     container.classList.remove("playing");
-    play.classList = "fa-solid fa-play";
+    play.querySelector("i").classList = "fa-solid fa-play";
     audio.pause();
 }
 // Play the music
 function playMusic(){
     container.classList.add("playing");
-    play.classList = "fa-solid fa-pause";
+    play.querySelector("i").classList = "fa-solid fa-pause";
     audio.play();
 }
 
